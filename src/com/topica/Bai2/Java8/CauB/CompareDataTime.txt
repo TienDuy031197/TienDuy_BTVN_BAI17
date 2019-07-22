@@ -1,0 +1,12 @@
+- Một số vấn đề về Data Time ở phiên bản Java cũ:
+1. Các class Java Date Time không nhất quán: chúng ta có class Date trong cả 2 package java.util và java.sql . Trong khi class format/ parse chúng lại nằm ở trong package java.text.
+2. Không rõ ràng trong việc định nghĩa các class cho time, timestamp, formatting và parsing. Chúng ta có lớp trừu tượng java.text.DateFormat để parse và format Date Time cần. Lớp SimpleDateFormat thường được sử dụng nhất.
+3. Tất cả các class Date đều mutable,do đó chúng không an toàn khi dùng chung trong môi trường đa luồng (Multi-Thread). Đây có thể coi là 1 vấn đề lớn với các class Java Date và Calendar.
+4. Class Date không cung cấp Internationalization và không hỗ trợ Timezone, sau đó các class java.util.Calendar và java.util.TimeZone được giới thiệu nhưng chúng cũng gặp phải các vấn đề bên trên.
+
+- Những thay đổi về Data và Time trong Java 8:
+1. Khả năng immutable (Immutability): Tất cả các class trong Date Time API mới đều là immutable, điều này tốt cho môi trường đa luồng (Multi-Thread).
+2. Phân tách các mối quan tâm (Separation of Concerns): API mới phân chia rõ ràng giữa Date Time, hạn chế nhầm lẫn khi sử dụng. Nó định nghĩa phân biệt các class cho Date, Time, DateTime, Timestamp, Timezone, …
+3. Tính trong suốt (Clarity): Các method được định nghĩa 1 cách rõ ràng và thực thi các hành động giống nhau trong cùng 1 class.
+4. Các tính năng hữu ích (Utility operations): Tất cả các class trong API Date Time đi kèm với các tác vụ phổ biến như cộng, trừ, parsing, định dạng date/time…
+5. Khả năng mở rộng (Extendable): API Date Time mới làm việc theo chuẩn ISO-8601 calendar, tuy nhiên chúng ta vẫn có thể sử dụng nó với các chuẩn không phải ISO.
